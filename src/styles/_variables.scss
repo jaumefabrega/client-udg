@@ -1,0 +1,23 @@
+// If you ever change the breakpoints you need to change them on the MediaQuery and Column components!
+$xsWidth: 360px !default;
+$smWidth: 600px !default; /* is flagged as secondary. Meaning it is an optional breakpoint */
+$mdWidth: 1024px !default;
+$lgWidth: 1440px !default;
+$defaultFontSize: 12px !default;
+$fontFamily: "Roboto+Condensed", sans-serif !default;
+$fontWeightBold: 700 !default;
+$fontWeightSemiBold: 600 !default;
+$fontWeightRegular: 400 !default;
+
+$communitiesTabsHeight: 55px !default;
+// TODO: Use it when available on next.js
+// :export {
+//   xs: $xsWidth;
+//   sm: $smWidth;
+//   md: $mdWidth;
+//   lg: $lgWidth;
+// }
+
+$hoverShadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.05),
+  rgba(0, 0, 0, 0.05) 0 1.25rem 1.5625rem -0.3125rem,
+  rgba(0, 0, 0, 0.04) 0 0.625rem 0.625rem -0.3125rem;

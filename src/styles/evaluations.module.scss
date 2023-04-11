@@ -1,0 +1,11 @@
+.courseName {
+  width: fit-content;
+  display: inline;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px auto;
+}

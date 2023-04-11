@@ -1,0 +1,77 @@
+@import "variables";
+/* stylelint-disable scss/media-feature-value-dollar-variable */
+/* stylelint-disable scss/dollar-variable-pattern */
+@mixin xs {
+  @media only screen and (max-width: #{$xsWidth - 1}) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media only screen and (min-width: $xsWidth) and (max-width: #{$smWidth - 1}) {
+    @content;
+  }
+}
+
+/* md is flagged as secondary. Meaning it is an optional breakpoint */
+@mixin md {
+  @media only screen and (min-width: $smWidth) and (max-width: #{$mdWidth - 1}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media only screen and (min-width: $mdWidth) and (max-width: #{$lgWidth - 1}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media only screen and (min-width: $lgWidth) {
+    @content;
+  }
+}
+
+$breakpoints: (
+  xs: $xsWidth,
+  sm: $smWidth,
+  md: $mdWidth,
+  lg: $lgWidth,
+);
+
+@mixin size-above($breakpoint: "md") {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @media only screen and (min-width: $breakpoint-value) {
+      @content;
+    }
+  } @else if type-of($breakpoint) == "number" {
+    @media only screen and (min-width: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin size-below($breakpoint: "md") {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint) - 1;
+    @media only screen and (max-width: $breakpoint-value) {
+      @content;
+    }
+  } @else if type-of($breakpoint) == "number" {
+    @media only screen and (max-width: $breakpoint - 1) {
+      @content;
+    }
+  } @else {
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+// https://medium.com/butternut-engineering/sticky-bottom-navigation-7b6038bd27b6
+@mixin clickable-bottom-element($baseSpacing: 0) {
+  padding-bottom: calc(#{$baseSpacing} + env(safe-area-inset-bottom));
+}
+/* stylelint-enable scss/media-feature-value-dollar-variable */
+/* stylelint-enable scss/dollar-variable-pattern */

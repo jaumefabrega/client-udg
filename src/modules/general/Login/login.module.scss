@@ -1,0 +1,40 @@
+@import "@/styles/mixins";
+@import "@/styles/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .title {
+    text-align: center;
+  }
+
+  .card {
+    max-width: 400px;
+    margin: auto;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    .input {
+      min-height: 82px; // to reserve space for error message
+    }
+
+    .button {
+      background-color: #ffd700;
+      min-width: 170px;
+      min-height: 30px;
+      margin-top: 10px;
+      color: #000;
+      font-size: 16px;
+      text-transform: uppercase;
+      &:active {
+        background-color: #ffe036;
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+@import "@/styles/mixins";
+@import "@/styles/colors";
+
+.container {
+  // background-color: #f8f9fa;
+
+  // background: rgb(29, 30, 38);
+  // background-image: url("/images/mesh.png");
+  // background-size: 500px auto;
+  // background: url("/images/stripes-pattern.svg") no-repeat bottom center,
+  //   linear-gradient(270deg, #9121c2, #ff5e5e);
+  // background: url("/images/stripes-pattern.svg") no-repeat bottom center,
+  // rgb(29, 30, 38);
+  // background: url("/images/stripes-pattern.svg") no-repeat bottom center,
+  //   #f8f9fa;
+  // background-size: cover;
+  color: $font-color;
+
+  // background: url("/images/tiles.svg") no-repeat center center, #f8f9fa;
+  // background-size: 80vw;
+
+  .headerInner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+
+    .user {
+      @include size-below("md") {
+        display: none;
+      }
+    }
+  }
+
+  .logo {
+    height: 48px;
+
+    @include size-below("md") {
+      height: 40px;
+    }
+  }
+
+  .main {
+    padding: 100px 30px 30px;
+    min-height: calc(100vh - 60px);
+    max-width: 800px;
+    margin: auto;
+
+    @include size-below("sm") {
+      padding: 70px 10px 30px;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@import "@/styles/variables";
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  color: inherit;
+  // background: url("/images/course-chemistry-final.png") no-repeat left center,
+  //   linear-gradient(270deg, #f8f9fa, #f8f9fa);
+  background-size: contain;
+  padding-left: 84px;
+  border: 1px solid #dee2e6;
+
+  &:hover {
+    box-shadow: $hoverShadow;
+  }
+}

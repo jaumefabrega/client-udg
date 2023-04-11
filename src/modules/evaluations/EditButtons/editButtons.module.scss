@@ -1,0 +1,11 @@
+@import "@/styles/variables";
+@import "@/styles/mixins";
+
+.editButtons {
+  display: flex;
+  gap: 20px;
+
+  @include size-below("sm") {
+    gap: 4px;
+  }
+}
