@@ -82,10 +82,12 @@ export const Course = () => {
             />
           ))}
       </div>
-      <CourseScoreCard
-        score={course.courseScore}
-        handlePostScore={(score: CourseScore) => scoreMutation.mutate(score)}
-      />
+      {course.courseScore && (
+        <CourseScoreCard
+          score={course.courseScore}
+          handlePostScore={(score: CourseScore) => scoreMutation.mutate(score)}
+        />
+      )}
     </>
   );
 };
