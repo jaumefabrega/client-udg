@@ -5,13 +5,9 @@ import { AbpEvaluation, Student } from "@/interfaces";
 import { Card, Text, Badge, Button, Group, Textarea } from "@mantine/core";
 
 import styles from "./abpCard.module.scss";
-import {
-  Calculator,
-  Pencil,
-  Speakerphone,
-  UserCircle,
-} from "tabler-icons-react";
+import { Book, ListCheck, Speakerphone, UserCircle } from "tabler-icons-react";
 import EditButtons from "../EditButtons/EditButtons";
+import { evaluations } from "@/constants";
 
 interface Props {
   abpEvaluation: AbpEvaluation;
@@ -61,8 +57,13 @@ const AbpCard: React.FC<Props> = ({
       withBorder
       className={styles.container}
     >
-      <div className={styles.header}>
-        <h3 className={styles.title}>ABP semana {order}:</h3>
+      <div className={styles.abpHeader}>
+        <div>
+          <h3 className={styles.title}>ABP semana {order}:</h3>
+          <Text className={styles.teacher}>
+            Prof: {abpEvaluation.teacherName}
+          </Text>
+        </div>
         {user?.id === abpEvaluation.teacherId && (
           <EditButtons
             setIsEditing={setIsEditing}
@@ -74,9 +75,9 @@ const AbpCard: React.FC<Props> = ({
         )}
       </div>
       <div className={styles.evaluationWrapper}>
-        <Pencil />
+        <ListCheck />
         <div className={styles.evaluation}>
-          <Text>Expresión Escrita</Text>
+          <Text>{evaluations[0].name}</Text>
           <Textarea
             placeholder={PENDING_VALUATION}
             autosize
@@ -93,7 +94,7 @@ const AbpCard: React.FC<Props> = ({
       <div className={styles.evaluationWrapper}>
         <Speakerphone />
         <div className={styles.evaluation}>
-          <Text>Expresión Oral</Text>
+          <Text>{evaluations[1].name}</Text>
           <Textarea
             placeholder={PENDING_VALUATION}
             autosize
@@ -108,9 +109,9 @@ const AbpCard: React.FC<Props> = ({
         </div>
       </div>
       <div className={styles.evaluationWrapper}>
-        <Calculator />
+        <Book />
         <div className={styles.evaluation}>
-          <Text>Capacidad Analítica</Text>
+          <Text>{evaluations[2].name}</Text>
           <Textarea
             placeholder={PENDING_VALUATION}
             autosize
@@ -127,7 +128,7 @@ const AbpCard: React.FC<Props> = ({
 
       {!ALL_EVALS_ARE_PENDING && (
         <div className={styles.reply}>
-          <div className={styles.header}>
+          <div className={styles.replyHeader}>
             <div className={styles.user}>
               <UserCircle />
               <h5>Respuesta de {student?.name}</h5>

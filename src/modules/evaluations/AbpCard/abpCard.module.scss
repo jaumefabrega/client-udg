@@ -3,65 +3,75 @@
 
 .container {
   color: inherit;
+}
 
-  .header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+.abpHeader {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  .teacher {
+    font-size: 14px;
   }
+}
 
-  .evaluationWrapper {
-    margin: 10px 0 15px;
+.evaluationWrapper {
+  margin: 10px 0 15px;
+  display: flex;
+  gap: 4px;
+
+  .evaluation {
     display: flex;
+    flex: 1;
+    flex-direction: column;
     gap: 4px;
 
-    .evaluation {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      gap: 4px;
-
-      svg {
-        stroke: #505050;
-      }
-
-      > div {
-        font-weight: 600;
-      }
+    svg {
+      stroke: #505050;
     }
 
-    .textEvaluation {
-      margin-left: 10px;
-      font-style: italic;
+    > div {
+      font-weight: 600;
+    }
+
+    .evaluationHeader {
+      display: flex;
+      gap: 4px;
+      align-items: center;
     }
   }
 
-  .reply {
-    .header {
+  .textEvaluation {
+    margin-left: 10px;
+    font-style: italic;
+  }
+}
+
+.reply {
+  .replyHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+
+    @include size-below("sm") {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .user {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-
-      @include size-below("sm") {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .user {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        padding: 6px 8px;
-        background-color: rgb(237, 237, 237);
-        width: fit-content;
-        border-radius: 4px;
-      }
+      gap: 4px;
+      padding: 6px 8px;
+      background-color: rgb(237, 237, 237);
+      width: fit-content;
+      border-radius: 4px;
     }
-    .replyText {
-      margin-left: 28px;
-      margin-top: 6px;
-    }
+  }
+  .replyText {
+    margin-left: 28px;
+    margin-top: 6px;
   }
 }
 

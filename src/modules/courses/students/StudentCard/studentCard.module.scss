@@ -5,8 +5,11 @@
   display: flex;
   justify-content: space-between;
   color: inherit;
-  // box-shadow: inset 0 2px 0px #dcffa6, 0 2px 5px #000;
-  // box-shadow: 0 0 24px #0053a6;
+
+  @include size-below("sm") {
+    flex-direction: column;
+  }
+
   &:hover {
     box-shadow: $hoverShadow;
   }
@@ -29,8 +32,6 @@
       color: inherit;
       transform: scale(1);
       transition: 0.2s ease-out;
-      // transition: opacity 1s;
-      // transition: color 1s;
     }
   }
 }

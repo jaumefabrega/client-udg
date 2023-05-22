@@ -5,7 +5,7 @@ import { AbpEvaluation, CourseScore } from "@/interfaces";
 import { Card, Text, Badge, Button, Group, NumberInput } from "@mantine/core";
 
 import styles from "./courseScore.module.scss";
-import { Calculator, Pencil, Speakerphone } from "tabler-icons-react";
+import { Book, ListCheck, Speakerphone } from "tabler-icons-react";
 import EditButtons from "../EditButtons/EditButtons";
 
 interface Props {
@@ -60,7 +60,7 @@ const CourseScore: React.FC<Props> = ({ score, handlePostScore }) => {
         <div className={styles.score}>
           <div className={styles.adders}>
             <div className={styles.subScore}>
-              <Pencil />
+              <ListCheck />
               <NumberInput
                 placeholder="-"
                 value={editableScore.score1 || ""}
@@ -82,7 +82,7 @@ const CourseScore: React.FC<Props> = ({ score, handlePostScore }) => {
               />
             </div>
             <div className={styles.subScore}>
-              <Calculator />
+              <Book />
               <NumberInput
                 placeholder="-"
                 value={editableScore.score3 || ""}
@@ -105,6 +105,10 @@ const CourseScore: React.FC<Props> = ({ score, handlePostScore }) => {
           neverFilled={SCORE_NEVER_FILLED}
         />
       )}
+      <Text className={styles.note}>
+        La nota final es la media de las 3 competencias, evaluadas al final de
+        la asignatura entre todos los profesores de la misma.
+      </Text>
     </Card>
   );
 };

@@ -10,6 +10,7 @@ import AbpCard from "@/modules/evaluations/AbpCard/AbpCard";
 
 import styles from "@/styles/evaluations.module.scss";
 import CourseScoreCard from "@/modules/evaluations/CourseScore/CourseScore";
+import EvaluationExplanations from "@/modules/evaluations/EvaluationExplanations/EvaluationExplanations";
 
 export const Course = () => {
   const router = useRouter();
@@ -62,11 +63,14 @@ export const Course = () => {
   if (!course?.abpEvaluations?.length) return null;
 
   return (
-    <>
-      <a href={getCourseLink(course.id)}>
-        <h3 className={styles.courseName}>{course?.name}</h3>
-      </a>
-      {user?.type === "teacher" && <h4>{course?.student?.name}</h4>}
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <a href={getCourseLink(course.id)}>
+          <h3 className={styles.courseName}>{course?.name}</h3>
+        </a>
+        {user?.type === "teacher" && <h4>{course?.student?.name}</h4>}
+      </div>
+      <EvaluationExplanations />
       <div className={styles.list}>
         {course.abpEvaluations
           .sort((a, b) => a.id - b.id)
@@ -88,7 +92,7 @@ export const Course = () => {
           handlePostScore={(score: CourseScore) => scoreMutation.mutate(score)}
         />
       )}
-    </>
+    </div>
   );
 };
 

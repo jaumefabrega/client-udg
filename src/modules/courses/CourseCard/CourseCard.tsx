@@ -35,7 +35,6 @@ const CourseCard: React.FC<Props> = ({ course }) => {
       >
         <Text>{course.name}</Text>
         <Text>{course.weeksDuration} semanas</Text>
-        {/* FIX: TODO: add start date when added in server */}
       </Card>
     </a>
   );

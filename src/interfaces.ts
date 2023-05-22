@@ -7,6 +7,7 @@ export interface AbpEvaluation {
   studentId: number;
   abpId: number;
   teacherId?: number;
+  teacherName?: string;
 }
 
 export interface CourseScore {

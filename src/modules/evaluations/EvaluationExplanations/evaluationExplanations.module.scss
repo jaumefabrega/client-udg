@@ -1,0 +1,47 @@
+@import "@/styles/mixins";
+@import "@/styles/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.chevron {
+  cursor: pointer;
+  transition: transform 0.3s ease-in;
+  &.closed {
+    transform: rotate(180deg);
+  }
+}
+
+.evaluationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.evaluation {
+  display: flex;
+  gap: 4px;
+}
+
+.icon {
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.name {
+  font-weight: 600;
+}
