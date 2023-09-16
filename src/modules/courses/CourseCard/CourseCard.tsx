@@ -25,16 +25,15 @@ const CourseCard: React.FC<Props> = ({ course }) => {
     <a href={getCourseLink(course.id)} className={styles.container}>
       <Card
         shadow="sm"
-        padding="lg"
+        padding="md"
         radius="md"
         className={styles.card}
-        style={{
-          background: `url("/images/course-${course.id}-final.png") no-repeat left center, #fff`,
-          backgroundSize: "contain",
-        }}
+        // style={{
+        //   background: `url("/images/course-${course.id}-final.png") no-repeat left center, #fff`,
+        //   backgroundSize: "contain",
+        // }}
       >
         <Text>{course.name}</Text>
-        <Text>{course.weeksDuration} semanas</Text>
       </Card>
     </a>
   );

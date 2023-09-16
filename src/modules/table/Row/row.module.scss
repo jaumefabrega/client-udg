@@ -1,0 +1,82 @@
+@import "@/styles/mixins";
+
+.separator {
+  width: 100%;
+  margin-top: 21px;
+  padding: 24px 4px 6px 4px;
+  border-top: 1px solid silver;
+
+  &.firstSeparator {
+    margin-top: 0px;
+    padding: 6px 4px;
+    border-top: 0px solid silver;
+  }
+}
+
+.mobileHeader {
+  max-width: 300px;
+  text-align: left;
+  padding-left: 24px;
+
+  @include size-above("md") {
+    display: none;
+  }
+}
+
+.studentName {
+  @include size-below("md") {
+    font-weight: 700;
+
+    &:not(.isFirstStudent) {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid silver;
+    }
+  }
+}
+
+.weekNum {
+  font-weight: 700;
+  text-align: right;
+
+  @include size-below("md") {
+    text-align: left;
+  }
+}
+
+.numberInput {
+  color: rgb(60, 60, 60);
+  border-width: 0px;
+  // border: 1px solid silver;
+  background-color: #e7f5ff;
+
+  &[disabled] {
+    opacity: 0.9;
+    border-width: 0px;
+
+    color: black;
+    cursor: text;
+    background-color: #f1f3f599;
+  }
+
+  @include size-below("md") {
+    width: 50px;
+  }
+}
+
+.final,
+.comment {
+  display: flex;
+  padding: 6px;
+  gap: 6px;
+  align-items: center;
+
+  @include size-above("md") {
+    width: 50px;
+    padding: 0;
+  }
+
+  > .mobileHeader {
+    text-align: right;
+  }
+}

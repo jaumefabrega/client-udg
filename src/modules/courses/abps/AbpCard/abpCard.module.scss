@@ -16,8 +16,12 @@
 
   .leftInfo {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
+
+    .weekNumber {
+      font-weight: 700;
+    }
   }
 
   .rightInfo {
@@ -32,14 +36,19 @@
       color: inherit;
       transform: scale(1);
       transition: 0.2s ease-out;
+      margin-left: 10px;
     }
   }
 }
 
 @include size-below("sm") {
-  .userImage {
+  .calendarIcon {
     display: none;
   }
+}
+
+.isLoggedTeacher {
+  color: #2196f3;
 }
 
 .container:hover {

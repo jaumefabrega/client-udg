@@ -1,0 +1,7 @@
+@import "@/styles/mixins";
+
+.container {
+  @include size-below("md") {
+    display: none !important;
+  }
+}

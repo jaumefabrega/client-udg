@@ -1,0 +1,107 @@
+@import "@/styles/mixins";
+
+.container {
+  & > * {
+    font-size: 14px;
+  }
+}
+
+.courseName {
+  font-size: 18px;
+}
+
+.weekNumber {
+  font-size: 16px;
+}
+
+.teachersNames {
+  font-size: 16px;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 20px auto;
+  padding: 14px;
+  border-radius: 8px;
+}
+
+.row {
+  display: flex;
+  @include size-below("md") {
+    flex-direction: column;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+
+  @include size-below("md") {
+    flex-direction: column;
+  }
+
+  &.firstColumn {
+    width: 200px;
+    min-width: 200px;
+    text-align: left;
+    padding: 6px;
+
+    & > div {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @include size-below("md") {
+      max-width: 400px;
+      width: 100%;
+    }
+  }
+}
+
+.abpGroup {
+  padding: 6px 4px;
+}
+
+.abps {
+  display: flex;
+
+  @include size-below("md") {
+    &:not(.specialInfo) {
+      flex-direction: column;
+    }
+  }
+
+  &.specialInfo {
+    justify-content: flex-end;
+  }
+}
+
+.abp {
+  width: 120px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  padding: 6px 4px;
+  text-align: center;
+  justify-content: center;
+
+  @include size-below("md") {
+    max-width: 400px;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+.finalGrade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  width: 50px;
+}

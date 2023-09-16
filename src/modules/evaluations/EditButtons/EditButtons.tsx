@@ -7,7 +7,7 @@ interface Props {
   discardEdit: () => void;
   saveEdit: () => void;
   isEditing: boolean;
-  neverFilled: boolean;
+  disable: boolean;
 }
 
 const EditButtons: React.FC<Props> = ({
@@ -15,7 +15,7 @@ const EditButtons: React.FC<Props> = ({
   discardEdit,
   saveEdit,
   isEditing,
-  neverFilled,
+  disable,
 }) => {
   return (
     <>
@@ -27,21 +27,28 @@ const EditButtons: React.FC<Props> = ({
           variant="light"
           size="xs"
         >
-          {neverFilled ? "Rellenar" : "Editar"}
+          Editar
         </Button>
       ) : (
         <div className={styles.editButtons}>
-          <Button onClick={discardEdit} variant="light" size="xs" color="red">
+          <Button
+            onClick={discardEdit}
+            disabled={disable}
+            variant="light"
+            size="xs"
+            color="red"
+          >
             Cancelar
           </Button>
           <Button
             onClick={saveEdit}
+            disabled={disable}
             variant="filled"
             size="xs"
             className={styles.saveButton}
             color="green"
           >
-            Publicar
+            Guardar
           </Button>
         </div>
       )}

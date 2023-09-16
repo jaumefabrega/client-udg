@@ -5,11 +5,11 @@ import { useQuery } from "react-query";
 import api from "@/services/api";
 
 import { UserContext } from "@/context";
-import { CourseI } from "@/interfaces";
-import StudentCard from "@/modules/courses/students/StudentCard/StudentCard";
+import { CourseI, CourseInfo } from "@/interfaces";
+import AbpCard from "@/modules/courses/abps/AbpCard/AbpCard";
 import { Card, Text, Badge, Button, Group } from "@mantine/core";
 
-import styles from "@/styles/students.module.scss";
+import styles from "@/styles/weeks.module.scss";
 
 export const Courses = () => {
   const { user } = useContext(UserContext);
@@ -22,29 +22,27 @@ export const Courses = () => {
     data: course,
     isLoading,
     isError,
-  } = useQuery<CourseI, Error>(
-    "getStudents",
-    () => api.getStudents(courseId || ""),
+  } = useQuery<CourseInfo, Error>(
+    ["getCourseInfo", courseId],
+    () => api.getCourseInfo(courseId || ""),
     {
       retry: false,
     }
   );
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>ERROR...</div>;
+  if (isLoading) return <div />;
+  if (isError) return <div>Ha habido un error.</div>;
 
   // if (!course) return null;
   return (
     <>
-      <h3>ALUMNOS de {course?.name}</h3>
+      <h3>{course?.name}</h3>
       {course &&
-        (!!course.students?.length ? (
-          <div className={styles.studentsList}>
-            {course.students
-              ?.sort((a, b) => a.name.localeCompare(b.name))
-              .map((student) => (
-                <StudentCard key={student.id} student={student} />
-              ))}
+        (!!course.abps?.length ? (
+          <div className={styles.weeksList}>
+            {course.abps.map((abp) => (
+              <AbpCard key={abp.id} abp={abp} />
+            ))}
           </div>
         ) : (
           <Text>No hay alumnos matriculados</Text>

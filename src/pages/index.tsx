@@ -1,6 +1,5 @@
 import type { NextPage } from "next/types";
 
-import Head from "next/head";
 import { useContext } from "react";
 import { useQuery } from "react-query";
 
@@ -11,9 +10,14 @@ import { CourseI } from "@/interfaces";
 import CourseCard from "@/modules/courses/CourseCard/CourseCard";
 
 import styles from "@/styles/courses.module.scss";
+import { useRouter } from "next/router";
+import AllEvaluations from "./clase/[courseId]/[abpId]";
 
 export const Home: NextPage = () => {
   const { user } = useContext(UserContext);
+  const router = useRouter();
+
+  const isStudent = user?.type === "student";
 
   const {
     data: courses = [],
@@ -21,18 +25,21 @@ export const Home: NextPage = () => {
     isError,
   } = useQuery<CourseI[], Error>("getCourses", () => api.getCourses(), {
     retry: false,
+    enabled: !isStudent,
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>ERROR...</div>;
+  if (isLoading) return <div />;
+  if (isError) return <div>Ha habido un error.</div>;
 
-  return (
+  return isStudent ? (
+    <AllEvaluations />
+  ) : (
     <>
       <h3>ASIGNATURAS</h3>
       {!!courses.length ? (
         <div className={styles.coursesList}>
           {courses
-            .sort((a, b) => a.name.localeCompare(b.name))
+            .sort((a, b) => a.order - b.order)
             .map((course) => (
               <CourseCard key={course.id} course={course} />
             ))}

@@ -45,6 +45,9 @@
     min-height: calc(100vh - 60px);
     max-width: 800px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     @include size-below("sm") {
       padding: 70px 10px 30px;
