@@ -26,7 +26,7 @@ const AbpCard: React.FC<Props> = ({ abp }) => {
         className={styles.container}
       >
         <div className={styles.leftInfo}>
-          <CalendarEvent className={styles.calendarIcon} />
+          <CalendarEvent className={styles.calendarIcon} color="gray" />
           <div>
             <Text className={styles.weekNumber}>Semana {abp.order + 1}</Text>
             <Text>

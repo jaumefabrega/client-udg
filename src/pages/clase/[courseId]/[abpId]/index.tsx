@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 
 import { NextPage } from "next/types";
-import styles from "@/styles/taula.module.scss";
+import styles from "@/styles/table.module.scss";
 import { Row } from "@/modules/table/Row/Row";
 import { Header } from "@/modules/table/Header/Header";
 import { AbpEvaluationExtended, AbpInfo } from "@/interfaces";

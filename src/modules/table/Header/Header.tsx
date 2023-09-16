@@ -1,4 +1,4 @@
-import tableStyles from "@/styles/taula.module.scss";
+import tableStyles from "@/styles/table.module.scss";
 import styles from "./header.module.scss";
 import cn from "classnames";
 
