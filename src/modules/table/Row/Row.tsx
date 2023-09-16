@@ -6,7 +6,7 @@ import { AbpEvaluationExtended } from "@/interfaces";
 
 import { ChatEvaluation } from "../ChatEvaluation/ChatEvaluation";
 
-import tableStyles from "@/styles/taula.module.scss";
+import tableStyles from "@/styles/table.module.scss";
 import rowStyles from "./row.module.scss";
 
 const numberInputProps = {
