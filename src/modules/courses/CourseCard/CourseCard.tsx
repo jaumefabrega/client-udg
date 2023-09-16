@@ -23,16 +23,7 @@ const CourseCard: React.FC<Props> = ({ course }) => {
 
   return (
     <a href={getCourseLink(course.id)} className={styles.container}>
-      <Card
-        shadow="sm"
-        padding="md"
-        radius="md"
-        className={styles.card}
-        // style={{
-        //   background: `url("/images/course-${course.id}-final.png") no-repeat left center, #fff`,
-        //   backgroundSize: "contain",
-        // }}
-      >
+      <Card shadow="sm" padding="md" radius="md" className={styles.card}>
         <Text>{course.name}</Text>
       </Card>
     </a>
