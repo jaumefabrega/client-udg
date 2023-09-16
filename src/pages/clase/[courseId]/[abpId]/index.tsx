@@ -35,6 +35,8 @@ export const AllEvaluations: NextPage<Props> = () => {
 
   const { user } = useContext(UserContext);
   const isTeacher = user?.type === "teacher";
+  const isStudent = user?.type === "student";
+
   const canEditEvaluations = !!abpInfo?.teachers.filter(
     (t) => t.id === user?.id
   ).length;
@@ -50,21 +52,30 @@ export const AllEvaluations: NextPage<Props> = () => {
 
   useEffect(() => {
     const getInitialEvals = async () => {
-      if (!isTeacher || (courseId !== undefined && abpId !== undefined)) {
-        const { abpInfo, evaluations } = isTeacher
-          ? await api.getAllEvaluationsAbp(courseId, abpId)
-          : await api.getAllEvaluationsStudent();
+      let evaluations;
+      let abpInfo;
+
+      if (isStudent) {
+        const response = await api.getAllEvaluationsStudent();
+        evaluations = response.evaluations;
+        abpInfo = response.abpInfo;
+      } else if (courseId !== undefined && abpId !== undefined) {
+        const response = await api.getAllEvaluationsAbp(courseId, abpId);
+        evaluations = response.evaluations;
+        abpInfo = response.abpInfo;
+      }
+      if (evaluations) {
         setInitialEvaluations([...evaluations]);
         setEvaluations([...evaluations]);
-        if (abpInfo) {
-          setAbpInfo({ ...abpInfo });
-        }
-        setIsLoading(false);
       }
+      if (abpInfo) {
+        setAbpInfo({ ...abpInfo });
+      }
+      setIsLoading(false);
     };
 
     getInitialEvals();
-  }, [courseId, abpId, isTeacher]);
+  }, [courseId, abpId, isStudent]);
 
   const sortedEvaluations = evaluations
     .sort((a, b) => a.abpOrder - b.abpOrder)

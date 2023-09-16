@@ -7,7 +7,7 @@ import { AbpEvaluationExtended } from "@/interfaces";
 import { ChatEvaluation } from "../ChatEvaluation/ChatEvaluation";
 
 import tableStyles from "@/styles/taula.module.scss";
-import rowSt from "./row.module.scss";
+import rowStyles from "./row.module.scss";
 
 const numberInputProps = {
   max: 10,
@@ -17,7 +17,7 @@ const numberInputProps = {
   variant: "filled",
   styles: { input: { textAlign: "center" } },
   formatter: (value: string) => value.replace(/(.+)\.0$/g, "$1"),
-  classNames: { input: rowSt.numberInput },
+  classNames: { input: rowStyles.numberInput },
 } as const;
 
 const getAverageGrade = (evaluation: AbpEvaluationExtended) => {
@@ -71,14 +71,14 @@ export const Row: React.FC<Props> = ({
   const isStudent = user?.type === "student";
   const rowTitle = isTeacher ? (
     <div
-      className={cn(rowSt.studentName, {
-        [rowSt.isFirstStudent]: rowIndex === 0,
+      className={cn(rowStyles.studentName, {
+        [rowStyles.isFirstStudent]: rowIndex === 0,
       })}
     >
       {abpEvaluation.student.name}
     </div>
   ) : (
-    <div className={rowSt.weekNum}>Semana {abpEvaluation.abpOrder + 1}</div>
+    <div className={rowStyles.weekNum}>Semana {abpEvaluation.abpOrder + 1}</div>
   );
   const inputsAreDisabled = isStudent ? true : disabled;
   const showChat = isTeacher ? true : !!abpEvaluation.chatTeacher1;
@@ -88,8 +88,8 @@ export const Row: React.FC<Props> = ({
     <>
       {isFirstOfKind && isStudent && (
         <div
-          className={cn(rowSt.separator, {
-            [rowSt.firstSeparator]: rowIndex === 0,
+          className={cn(rowStyles.separator, {
+            [rowStyles.firstSeparator]: rowIndex === 0,
           })}
         >
           <strong>{abpEvaluation.courseName}</strong>
@@ -97,7 +97,7 @@ export const Row: React.FC<Props> = ({
       )}
       <div
         className={cn(tableStyles.row, {
-          [rowSt.isFirstRowOfCourse]: isFirstOfKind,
+          [rowStyles.isFirstRowOfCourse]: isFirstOfKind,
         })}
       >
         <div className={cn(tableStyles.column, tableStyles.firstColumn)}>
@@ -108,7 +108,9 @@ export const Row: React.FC<Props> = ({
         <div className={tableStyles.column}>
           <div className={tableStyles.abps}>
             <div className={tableStyles.abp}>
-              <div className={rowSt.mobileHeader}>Asistencia y puntualidad</div>
+              <div className={rowStyles.mobileHeader}>
+                Asistencia y puntualidad
+              </div>
               <NumberInput
                 {...numberInputProps}
                 value={abpEvaluation.asistencia || ""}
@@ -117,7 +119,7 @@ export const Row: React.FC<Props> = ({
               />
             </div>
             <div className={tableStyles.abp}>
-              <div className={rowSt.mobileHeader}>Interés y motivación</div>
+              <div className={rowStyles.mobileHeader}>Interés y motivación</div>
               <NumberInput
                 {...numberInputProps}
                 value={abpEvaluation.interes || ""}
@@ -130,7 +132,7 @@ export const Row: React.FC<Props> = ({
         <div className={tableStyles.column}>
           <div className={tableStyles.abps}>
             <div className={tableStyles.abp}>
-              <div className={rowSt.mobileHeader}>Información</div>
+              <div className={rowStyles.mobileHeader}>Información</div>
               <NumberInput
                 {...numberInputProps}
                 value={abpEvaluation.informacion || ""}
@@ -139,7 +141,9 @@ export const Row: React.FC<Props> = ({
               />
             </div>
             <div className={tableStyles.abp}>
-              <div className={rowSt.mobileHeader}>Interacción compañeros</div>
+              <div className={rowStyles.mobileHeader}>
+                Interacción compañeros
+              </div>
               <NumberInput
                 {...numberInputProps}
                 value={abpEvaluation.interaccion || ""}
@@ -152,7 +156,7 @@ export const Row: React.FC<Props> = ({
         <div className={tableStyles.column}>
           <div className={tableStyles.abps}>
             <div className={tableStyles.abp}>
-              <div className={rowSt.mobileHeader}>Estudio del caso</div>
+              <div className={rowStyles.mobileHeader}>Estudio del caso</div>
               <NumberInput
                 {...numberInputProps}
                 value={abpEvaluation.estudio || ""}
@@ -161,7 +165,9 @@ export const Row: React.FC<Props> = ({
               />
             </div>
             <div className={tableStyles.abp}>
-              <div className={rowSt.mobileHeader}>Fuentes de conocimiento</div>
+              <div className={rowStyles.mobileHeader}>
+                Fuentes de conocimiento
+              </div>
               <NumberInput
                 {...numberInputProps}
                 value={abpEvaluation.fuentes || ""}
@@ -170,7 +176,7 @@ export const Row: React.FC<Props> = ({
               />
             </div>
             <div className={tableStyles.abp}>
-              <div className={rowSt.mobileHeader}>Análisis crítico</div>
+              <div className={rowStyles.mobileHeader}>Análisis crítico</div>
               <NumberInput
                 {...numberInputProps}
                 value={abpEvaluation.analisis || ""}
@@ -182,8 +188,8 @@ export const Row: React.FC<Props> = ({
         </div>
         <div className={tableStyles.column}>
           <div className={cn(tableStyles.abps, tableStyles.specialInfo)}>
-            <div className={rowSt.final}>
-              <div className={rowSt.mobileHeader}>Nota final</div>
+            <div className={rowStyles.final}>
+              <div className={rowStyles.mobileHeader}>Nota final</div>
               <NumberInput
                 {...numberInputProps}
                 value={abpEvaluation.notaFinal || ""}
