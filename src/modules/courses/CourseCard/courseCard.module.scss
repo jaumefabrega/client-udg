@@ -5,10 +5,43 @@
   justify-content: space-between;
   color: inherit;
   background-size: contain;
-  // padding-left: 84px;
-  border: 1px solid #dee2e6;
+  border: 1px solid #1c2441;
+  border-radius: 0px;
+  padding: 16px 24px;
+  position: relative;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(17, 23, 44, 0.4);
+    opacity: 0;
+    -webkit-transition: opacity 170ms ease-out;
+    transition: opacity 170ms ease-out;
+  }
 
   &:hover {
     box-shadow: $hoverShadow;
+    &:before {
+      opacity: 0.2;
+    }
+
+    .chevron {
+      left: 5px;
+      opacity: 1;
+      transform: scale(1.2);
+    }
   }
+}
+
+.chevron {
+  margin-left: 16px;
+  opacity: 0.5;
+  color: inherit;
+  transform: scale(1);
+  transition: 0.2s ease-out;
 }

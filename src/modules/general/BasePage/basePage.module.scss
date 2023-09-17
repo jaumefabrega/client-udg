@@ -19,6 +19,18 @@
   // background: url("/images/tiles.svg") no-repeat center center, #f8f9fa;
   // background-size: 80vw;
 
+  .header {
+    box-shadow: 0 0 0.5rem rgba(17, 23, 44, 0.35);
+  }
+
+  .masterName {
+    width: 100%;
+    background: #008566;
+    color: #fff;
+    text-align: center;
+    margin: 0 auto;
+  }
+
   .headerInner {
     display: flex;
     align-items: center;
@@ -26,6 +38,7 @@
     height: 100%;
 
     .user {
+      color: #001489;
       @include size-below("md") {
         display: none;
       }
@@ -33,11 +46,7 @@
   }
 
   .logo {
-    height: 48px;
-
-    @include size-below("md") {
-      height: 40px;
-    }
+    height: 32px;
   }
 
   .main {

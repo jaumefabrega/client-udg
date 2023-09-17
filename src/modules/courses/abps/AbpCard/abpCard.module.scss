@@ -5,13 +5,34 @@
   display: flex;
   justify-content: space-between;
   color: inherit;
+  border: 1px solid #1c2441;
+  border-radius: 0px;
+  padding: 16px 24px;
+  position: relative;
 
   @include size-below("sm") {
     flex-direction: column;
   }
 
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(17, 23, 44, 0.4);
+    opacity: 0;
+    -webkit-transition: opacity 170ms ease-out;
+    transition: opacity 170ms ease-out;
+  }
+
   &:hover {
     box-shadow: $hoverShadow;
+    &:before {
+      opacity: 0.2;
+    }
   }
 
   .leftInfo {

@@ -9,3 +9,31 @@
     gap: 4px;
   }
 }
+
+.button {
+  border-radius: 0px;
+  background: #11172c;
+  color: #fff;
+  font-weight: normal;
+  transition: all 150ms ease-out;
+  font-size: 14px;
+
+  &:hover {
+    background: #fff;
+    color: #1c2441;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &.cancelButton {
+    background: silver;
+    color: #000;
+
+    &:hover {
+      background: #fff;
+      color: #1c2441;
+    }
+  }
+}

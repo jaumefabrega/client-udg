@@ -10,12 +10,10 @@ import { CourseI } from "@/interfaces";
 import CourseCard from "@/modules/courses/CourseCard/CourseCard";
 
 import styles from "@/styles/courses.module.scss";
-import { useRouter } from "next/router";
 import AllEvaluations from "./clase/[courseId]/[abpId]";
 
 export const Home: NextPage = () => {
   const { user } = useContext(UserContext);
-  const router = useRouter();
 
   const isStudent = user?.type === "student";
 

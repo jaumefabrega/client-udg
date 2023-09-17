@@ -1,3 +1,4 @@
+import cn from "classnames";
 import { Button } from "@mantine/core";
 
 import styles from "./editButtons.module.scss";
@@ -26,6 +27,7 @@ const EditButtons: React.FC<Props> = ({
           }}
           variant="light"
           size="xs"
+          classNames={{ root: cn(styles.editButton, styles.button) }}
         >
           Editar
         </Button>
@@ -37,6 +39,7 @@ const EditButtons: React.FC<Props> = ({
             variant="light"
             size="xs"
             color="red"
+            classNames={{ root: cn(styles.cancelButton, styles.button) }}
           >
             Cancelar
           </Button>
@@ -45,7 +48,7 @@ const EditButtons: React.FC<Props> = ({
             disabled={disable}
             variant="filled"
             size="xs"
-            className={styles.saveButton}
+            classNames={{ root: cn(styles.saveButton, styles.button) }}
             color="green"
           >
             Guardar

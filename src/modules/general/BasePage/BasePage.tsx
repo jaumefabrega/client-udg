@@ -1,27 +1,15 @@
-import Head from "next/head";
-import Image from "next/image";
 import { useContext } from "react";
-
+import cn from "classnames";
 import { UserContext } from "@/context";
 import { Logout as LogoutIcon } from "tabler-icons-react";
 
-import {
-  AppShell,
-  Navbar,
-  Header,
-  Footer,
-  Aside,
-  Text,
-  MediaQuery,
-  Burger,
-  useMantineTheme,
-  Button,
-} from "@mantine/core";
+import { AppShell, Header, Footer, Text, Button } from "@mantine/core";
 import Link from "next/link";
 import { urls } from "@/constants";
 import { useRouter } from "next/router";
 
 import styles from "./basePage.module.scss";
+import buttonStyles from "@/modules/evaluations/EditButtons/editButtons.module.scss";
 
 interface Props {
   children: React.ReactNode;
@@ -51,13 +39,16 @@ const BasePage: React.FC<Props> = ({ children }) => {
         </Footer>
       }
       header={
-        <Header height={{ base: 50, md: 70 }} p="md" fixed>
+        <Header
+          className={styles.header}
+          height={{ base: 36, md: 36 }}
+          p="md"
+          fixed
+        >
           <div className={styles.headerInner}>
             <Link href="/">
               <img
-                src="/images/logo-udg-wide.png"
-                // width={70}
-                // height={48}
+                src="/images/logo-udg.png"
                 alt="Logo UDG"
                 className={styles.logo}
               />
@@ -73,6 +64,9 @@ const BasePage: React.FC<Props> = ({ children }) => {
                   variant="light"
                   size="xs"
                   rightIcon={<LogoutIcon />}
+                  classNames={{
+                    root: cn(buttonStyles.button),
+                  }}
                 >
                   Cerrar Sesión
                 </Button>
