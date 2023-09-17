@@ -3,3 +3,17 @@
 .isLoggedTeacher {
   color: #2196f3;
 }
+
+.explanationLink {
+  display: flex;
+  padding: 4px 0;
+  gap: 4px;
+  align-items: center;
+  text-decoration: underline;
+}
+
+.openInNew {
+  opacity: 0.7;
+  display: inline;
+  width: 16px;
+}

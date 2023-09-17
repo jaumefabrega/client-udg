@@ -17,11 +17,22 @@ export const TableTitle: React.FC<Props> = ({
   const { user } = useContext(UserContext);
   const isTeacher = user?.type === "teacher";
   const hasMultipleTeachers = Number(abpInfo?.teachers?.length) > 1;
+  const explanationLink = (
+    <a
+      href="https://drive.google.com/file/d/15uYExVeLVxRMFoKCOcWdiB_iHfhtvsRz/view?usp=drive_link"
+      target="_blank"
+      className={styles.explanationLink}
+    >
+      <div>Explicación Evaluaciones</div>
+      <img src="/icons/openInNew.svg" className={styles.openInNew} />
+    </a>
+  );
 
   if (!isTeacher)
     return (
       <div>
         <h1 className={styles.mainTitle}>{user?.name}</h1>
+        {explanationLink}
       </div>
     );
   return (
@@ -45,6 +56,7 @@ export const TableTitle: React.FC<Props> = ({
           ? 'Para editar las notas, pulsa el botón "Editar" de debajo de la tabla.'
           : "No puedes editar las notas porque no eres profesor de este ABP."}
       </em>
+      {explanationLink}
     </div>
   );
 };
