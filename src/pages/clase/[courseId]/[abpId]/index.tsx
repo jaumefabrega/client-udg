@@ -8,7 +8,7 @@ import { AbpEvaluationExtended, AbpInfo } from "@/interfaces";
 import EditButtons from "@/modules/evaluations/EditButtons/EditButtons";
 import api from "@/services/api";
 import { UserContext } from "@/context";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { TableTitle } from "@/modules/general/TableTitle/TableTitle";
 
 interface Props {}
@@ -76,6 +76,44 @@ export const AllEvaluations: NextPage<Props> = () => {
 
     getInitialEvals();
   }, [courseId, abpId, isStudent]);
+
+  const youWereEditingMsg =
+    "Estabas en proceso de edición y no has pulsado GUARDAR. Estás seguro?";
+
+  // Warn if user closes or reloads tab while editing
+  useEffect(() => {
+    const alertIfEditing = (event: BeforeUnloadEvent) => {
+      if (isEditing) {
+        event.preventDefault();
+        event.returnValue = youWereEditingMsg;
+        return true;
+      }
+      return null;
+    };
+
+    window.addEventListener("beforeunload", alertIfEditing);
+    return () => {
+      window.removeEventListener("beforeunload", alertIfEditing);
+    };
+  }, [isEditing]);
+
+  // Warn if user navigates to another url from the app while editing
+  useEffect(() => {
+    if (isEditing) {
+      const routeChangeStart = () => {
+        const ok = confirm(youWereEditingMsg);
+        if (!ok) {
+          Router.events.emit("routeChangeError");
+          throw "Abort route change. Please ignore this error.";
+        }
+      };
+      Router.events.on("routeChangeStart", routeChangeStart);
+
+      return () => {
+        Router.events.off("routeChangeStart", routeChangeStart);
+      };
+    }
+  }, [isEditing]);
 
   const sortedEvaluations = evaluations
     .sort((a, b) => a.abpOrder - b.abpOrder)

@@ -28,7 +28,7 @@ const AbpCard: React.FC<Props> = ({ abp }) => {
         <div className={styles.leftInfo}>
           <CalendarEvent className={styles.calendarIcon} color="gray" />
           <div>
-            <Text className={styles.weekNumber}>Semana {abp.order + 1}</Text>
+            <Text className={styles.weekNumber}>ABP {abp.order + 1}</Text>
             <Text>
               {abp.teachers.map((teacher) => (
                 <div

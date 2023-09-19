@@ -23,7 +23,7 @@ export const TableTitle: React.FC<Props> = ({
       target="_blank"
       className={styles.explanationLink}
     >
-      <div>Explicación Evaluaciones</div>
+      <div>RÚBRICA DE EVALUACIÓN</div>
       <img src="/icons/openInNew.svg" className={styles.openInNew} />
     </a>
   );
@@ -38,7 +38,7 @@ export const TableTitle: React.FC<Props> = ({
   return (
     <div>
       <h1 className={styles.mainTitle}>{abpInfo?.course.name}</h1>
-      <h2 className={styles.weekNumber}>Semana {Number(abpInfo?.order) + 1}</h2>
+      <h2 className={styles.weekNumber}>ABP {Number(abpInfo?.order) + 1}</h2>
       <div className={styles.teachersNames}>
         Profesor{hasMultipleTeachers ? "es" : ""}:{" "}
         {abpInfo?.teachers?.map((t, idx) => (
@@ -51,11 +51,21 @@ export const TableTitle: React.FC<Props> = ({
           </span>
         ))}
       </div>
-      <em>
-        {canEditEvaluations
-          ? 'Para editar las notas, pulsa el botón "Editar" de debajo de la tabla.'
-          : "No puedes editar las notas porque no eres profesor de este ABP."}
-      </em>
+      {canEditEvaluations ? (
+        <>
+          <div>
+            <em>
+              Pulsa el botón EDITAR de debajo de la tabla para iniciar la
+              evaluación. No te olvides de GUARDAR los cambios realizados.
+            </em>
+          </div>
+          <div>
+            <em>Puedes añadir texto libre en la última columna.</em>
+          </div>
+        </>
+      ) : (
+        <em>No puedes editar las notas porque no eres profesor de este ABP.</em>
+      )}
       {explanationLink}
     </div>
   );

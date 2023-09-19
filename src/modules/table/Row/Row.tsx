@@ -78,7 +78,7 @@ export const Row: React.FC<Props> = ({
       {abpEvaluation.student.name}
     </div>
   ) : (
-    <div className={rowStyles.weekNum}>Semana {abpEvaluation.abpOrder + 1}</div>
+    <div className={rowStyles.weekNum}>ABP {abpEvaluation.abpOrder + 1}</div>
   );
   const inputsAreDisabled = isStudent ? true : disabled;
   const showChat = isTeacher ? true : !!abpEvaluation.chatTeacher1;
@@ -195,7 +195,9 @@ export const Row: React.FC<Props> = ({
                 value={abpEvaluation.notaFinal || ""}
                 onChange={(value: number) => handleChange("notaFinal", value)}
                 disabled={inputsAreDisabled}
-                placeholder={computedAvgGrade === "0" ? "" : computedAvgGrade}
+                placeholder={
+                  computedAvgGrade === "0" ? "" : `(${computedAvgGrade})`
+                }
               />
             </div>
             {showChat && (
