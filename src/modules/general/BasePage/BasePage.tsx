@@ -35,7 +35,7 @@ const BasePage: React.FC<Props> = ({ children }) => {
             textShadow: "0px 0px 10px black",
           }}
         >
-          ayuda@masterUDG.es
+          info@masterrecursoshidricos.es
         </Footer>
       }
       header={
