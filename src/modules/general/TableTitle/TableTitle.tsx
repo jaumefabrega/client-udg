@@ -19,7 +19,7 @@ export const TableTitle: React.FC<Props> = ({
   const hasMultipleTeachers = Number(abpInfo?.teachers?.length) > 1;
   const explanationLink = (
     <a
-      href="https://drive.google.com/file/d/15uYExVeLVxRMFoKCOcWdiB_iHfhtvsRz/view?usp=drive_link"
+      href="https://drive.google.com/file/d/1y6Wy2aULcFGlFkl_W7_pvZBP7I4mjK4e/view"
       target="_blank"
       className={styles.explanationLink}
     >
