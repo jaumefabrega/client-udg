@@ -11,11 +11,13 @@ import api from "@/services/api";
 interface Props {
   abpEvaluation: AbpEvaluationExtended;
   setEvaluations: React.Dispatch<React.SetStateAction<AbpEvaluationExtended[]>>;
+  isTeacherOfThisAbp: boolean;
 }
 
 export const ChatEvaluation: React.FC<Props> = ({
   abpEvaluation,
   setEvaluations,
+  isTeacherOfThisAbp,
 }) => {
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -67,15 +69,18 @@ export const ChatEvaluation: React.FC<Props> = ({
   const isTeacher = user?.type === "teacher";
   const isStudent = user?.type === "student";
 
-  const showCommentTeacher1 = isTeacher || !!abpEvaluation.chatTeacher1;
+  const showCommentTeacher1 =
+    isTeacherOfThisAbp || !!abpEvaluation.chatTeacher1;
   const showCommentStudent1 =
     (isStudent && !!abpEvaluation.chatTeacher1) || !!abpEvaluation.chatStudent1;
   const showCommentTeacher2 =
-    (isTeacher && !!abpEvaluation.chatStudent1) || !!abpEvaluation.chatTeacher2;
+    (isTeacherOfThisAbp && !!abpEvaluation.chatStudent1) ||
+    !!abpEvaluation.chatTeacher2;
 
-  const disableCommentTeacher1 = isStudent || !!abpEvaluation.chatStudent1;
+  const disableCommentTeacher1 =
+    !isTeacherOfThisAbp || !!abpEvaluation.chatStudent1;
   const disableCommentStudent1 = isTeacher || !!abpEvaluation.chatTeacher2;
-  const disableCommentTeacher2 = isStudent;
+  const disableCommentTeacher2 = !isTeacherOfThisAbp;
   const allAreDisabled =
     disableCommentTeacher1 && disableCommentStudent1 && disableCommentTeacher2;
 
@@ -101,6 +106,7 @@ export const ChatEvaluation: React.FC<Props> = ({
                   placeholder="Escribe aquí"
                   autosize
                   minRows={2}
+                  maxLength={255}
                   classNames={{ input: styles.textareaInput }}
                   disabled={disableCommentTeacher1}
                   value={chatTeacher1 || ""}
@@ -117,6 +123,7 @@ export const ChatEvaluation: React.FC<Props> = ({
                   placeholder="Escribe aquí"
                   autosize
                   minRows={2}
+                  maxLength={255}
                   classNames={{ input: styles.textareaInput }}
                   disabled={disableCommentStudent1}
                   value={chatStudent1 || ""}
@@ -133,6 +140,7 @@ export const ChatEvaluation: React.FC<Props> = ({
                   placeholder="Escribe aquí"
                   autosize
                   minRows={2}
+                  maxLength={255}
                   classNames={{ input: styles.textareaInput }}
                   disabled={disableCommentTeacher2}
                   value={chatTeacher2 || ""}

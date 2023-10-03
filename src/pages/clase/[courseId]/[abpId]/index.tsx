@@ -35,6 +35,8 @@ export const AllEvaluations: NextPage<Props> = () => {
 
   const { user } = useContext(UserContext);
   const isTeacher = user?.type === "teacher";
+  const isTeacherOfThisAbp =
+    !!user?.id && !!abpInfo?.teachers?.map((t) => t.id).includes(user?.id);
   const isStudent = user?.type === "student";
 
   const canEditEvaluations = !!abpInfo?.teachers.filter(
@@ -138,6 +140,7 @@ export const AllEvaluations: NextPage<Props> = () => {
                 (el) => el.courseId === ev.courseId
               ) === idx
             }
+            isTeacherOfThisAbp={isTeacherOfThisAbp}
             key={ev.id}
           />
         ))}

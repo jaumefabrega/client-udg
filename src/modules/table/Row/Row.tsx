@@ -21,13 +21,25 @@ const numberInputProps = {
 } as const;
 
 const getAverageGrade = (evaluation: AbpEvaluationExtended) => {
-  const asistencia = evaluation.asistencia || 0;
-  const interes = evaluation.interes || 0;
-  const informacion = evaluation.informacion || 0;
-  const interaccion = evaluation.interaccion || 0;
-  const estudio = evaluation.estudio || 0;
-  const fuentes = evaluation.fuentes || 0;
-  const analisis = evaluation.analisis || 0;
+  const asistencia = evaluation.asistencia;
+  const interes = evaluation.interes;
+  const informacion = evaluation.informacion;
+  const interaccion = evaluation.interaccion;
+  const estudio = evaluation.estudio;
+  const fuentes = evaluation.fuentes;
+  const analisis = evaluation.analisis;
+
+  if (
+    asistencia === null ||
+    interes === null ||
+    informacion === null ||
+    interaccion === null ||
+    estudio === null ||
+    fuentes === null ||
+    analisis === null
+  ) {
+    return "";
+  }
 
   const average =
     (asistencia +
@@ -48,6 +60,7 @@ interface Props {
   disabled: boolean;
   rowIndex: number;
   isFirstOfKind: boolean;
+  isTeacherOfThisAbp: boolean;
 }
 
 export const Row: React.FC<Props> = ({
@@ -56,6 +69,7 @@ export const Row: React.FC<Props> = ({
   disabled,
   rowIndex,
   isFirstOfKind,
+  isTeacherOfThisAbp,
 }) => {
   const handleChange = (key: keyof AbpEvaluationExtended, newValue: number) => {
     setEvaluations((prev) => {
@@ -113,7 +127,7 @@ export const Row: React.FC<Props> = ({
               </div>
               <NumberInput
                 {...numberInputProps}
-                value={abpEvaluation.asistencia || ""}
+                value={abpEvaluation.asistencia ?? ""}
                 onChange={(value: number) => handleChange("asistencia", value)}
                 disabled={inputsAreDisabled}
               />
@@ -122,7 +136,7 @@ export const Row: React.FC<Props> = ({
               <div className={rowStyles.mobileHeader}>Interés y motivación</div>
               <NumberInput
                 {...numberInputProps}
-                value={abpEvaluation.interes || ""}
+                value={abpEvaluation.interes ?? ""}
                 onChange={(value: number) => handleChange("interes", value)}
                 disabled={inputsAreDisabled}
               />
@@ -135,7 +149,7 @@ export const Row: React.FC<Props> = ({
               <div className={rowStyles.mobileHeader}>Información</div>
               <NumberInput
                 {...numberInputProps}
-                value={abpEvaluation.informacion || ""}
+                value={abpEvaluation.informacion ?? ""}
                 onChange={(value: number) => handleChange("informacion", value)}
                 disabled={inputsAreDisabled}
               />
@@ -146,7 +160,7 @@ export const Row: React.FC<Props> = ({
               </div>
               <NumberInput
                 {...numberInputProps}
-                value={abpEvaluation.interaccion || ""}
+                value={abpEvaluation.interaccion ?? ""}
                 onChange={(value: number) => handleChange("interaccion", value)}
                 disabled={inputsAreDisabled}
               />
@@ -159,7 +173,7 @@ export const Row: React.FC<Props> = ({
               <div className={rowStyles.mobileHeader}>Estudio del caso</div>
               <NumberInput
                 {...numberInputProps}
-                value={abpEvaluation.estudio || ""}
+                value={abpEvaluation.estudio ?? ""}
                 onChange={(value: number) => handleChange("estudio", value)}
                 disabled={inputsAreDisabled}
               />
@@ -170,7 +184,7 @@ export const Row: React.FC<Props> = ({
               </div>
               <NumberInput
                 {...numberInputProps}
-                value={abpEvaluation.fuentes || ""}
+                value={abpEvaluation.fuentes ?? ""}
                 onChange={(value: number) => handleChange("fuentes", value)}
                 disabled={inputsAreDisabled}
               />
@@ -179,7 +193,7 @@ export const Row: React.FC<Props> = ({
               <div className={rowStyles.mobileHeader}>Análisis crítico</div>
               <NumberInput
                 {...numberInputProps}
-                value={abpEvaluation.analisis || ""}
+                value={abpEvaluation.analisis ?? ""}
                 onChange={(value: number) => handleChange("analisis", value)}
                 disabled={inputsAreDisabled}
               />
@@ -192,18 +206,17 @@ export const Row: React.FC<Props> = ({
               <div className={rowStyles.mobileHeader}>Nota final</div>
               <NumberInput
                 {...numberInputProps}
-                value={abpEvaluation.notaFinal || ""}
+                value={abpEvaluation.notaFinal ?? ""}
                 onChange={(value: number) => handleChange("notaFinal", value)}
-                disabled={inputsAreDisabled}
-                placeholder={
-                  computedAvgGrade === "0" ? "" : `(${computedAvgGrade})`
-                }
+                disabled={true}
+                placeholder={computedAvgGrade}
               />
             </div>
             {showChat && (
               <ChatEvaluation
                 abpEvaluation={abpEvaluation}
                 setEvaluations={setEvaluations}
+                isTeacherOfThisAbp={isTeacherOfThisAbp}
               />
             )}
           </div>
