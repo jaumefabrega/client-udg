@@ -106,7 +106,7 @@ export const ChatEvaluation: React.FC<Props> = ({
                   placeholder="Escribe aquí"
                   autosize
                   minRows={2}
-                  maxLength={255}
+                  maxLength={1000}
                   classNames={{ input: styles.textareaInput }}
                   disabled={disableCommentTeacher1}
                   value={chatTeacher1 || ""}
@@ -123,7 +123,7 @@ export const ChatEvaluation: React.FC<Props> = ({
                   placeholder="Escribe aquí"
                   autosize
                   minRows={2}
-                  maxLength={255}
+                  maxLength={1000}
                   classNames={{ input: styles.textareaInput }}
                   disabled={disableCommentStudent1}
                   value={chatStudent1 || ""}
@@ -140,7 +140,7 @@ export const ChatEvaluation: React.FC<Props> = ({
                   placeholder="Escribe aquí"
                   autosize
                   minRows={2}
-                  maxLength={255}
+                  maxLength={1000}
                   classNames={{ input: styles.textareaInput }}
                   disabled={disableCommentTeacher2}
                   value={chatTeacher2 || ""}
