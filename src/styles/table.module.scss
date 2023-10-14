@@ -106,3 +106,14 @@
   font-weight: 700;
   width: 50px;
 }
+
+.teacherActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .downloadAnchor {
+    text-decoration: underline;
+    font-weight: 700;
+  }
+}

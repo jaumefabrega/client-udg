@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { NextPage } from "next/types";
 import styles from "@/styles/table.module.scss";
-import { Row } from "@/modules/table/Row/Row";
+import { Row, getAverageGrade } from "@/modules/table/Row/Row";
 import { Header } from "@/modules/table/Header/Header";
 import { AbpEvaluationExtended, AbpInfo } from "@/interfaces";
 import EditButtons from "@/modules/evaluations/EditButtons/EditButtons";
@@ -10,6 +10,7 @@ import api from "@/services/api";
 import { UserContext } from "@/context";
 import { Router, useRouter } from "next/router";
 import { TableTitle } from "@/modules/general/TableTitle/TableTitle";
+import { CSVLink } from "react-csv";
 
 interface Props {}
 
@@ -122,6 +123,37 @@ export const AllEvaluations: NextPage<Props> = () => {
     .sort((a, b) => a.courseOrder - b.courseOrder)
     .sort((a, b) => a.student.name.localeCompare(b.student.name));
 
+  const downloadableDataHeaders = [
+    "Alumno",
+    "Asistencia y puntualidad",
+    "Interés y motivación",
+    "Información",
+    "Interacción compañeros",
+    "Estudio del caso",
+    "Fuentes de conocimiento",
+    "Análisis Crítico",
+    "NOTA FINAL",
+    "Comentario del profesor",
+    "Réplica del alumno",
+    "Réplica del profesor",
+  ];
+
+  const downloadableData = sortedEvaluations.map((evaluation) => [
+    evaluation.student.name,
+    evaluation.asistencia,
+    evaluation.interes,
+    evaluation.informacion,
+    evaluation.interaccion,
+    evaluation.estudio,
+    evaluation.fuentes,
+    evaluation.analisis,
+    getAverageGrade(evaluation),
+    evaluation.chatTeacher1,
+    evaluation.chatStudent1,
+    evaluation.chatTeacher2,
+  ]);
+  downloadableData.unshift(downloadableDataHeaders);
+
   if (isLoading) return <div className={styles.container} />;
   // if (isError) return <div>Ha habido un error.</div>;
   return (
@@ -145,21 +177,36 @@ export const AllEvaluations: NextPage<Props> = () => {
           />
         ))}
       </div>
-      {isTeacher && canEditEvaluations && (
-        <EditButtons
-          isEditing={isEditing}
-          saveEdit={handleSave}
-          discardEdit={() => {
-            setEvaluations([...initialEvaluations]);
-            setIsEditing(false);
-          }}
-          setIsEditing={setIsEditing}
-          disable={isSaving}
-        />
-      )}
-      {isTeacher && !canEditEvaluations && (
-        <em>No puedes editar las notas porque no eres profesor de este ABP.</em>
-      )}
+      <div className={styles.teacherActions}>
+        {isTeacher && canEditEvaluations && (
+          <EditButtons
+            isEditing={isEditing}
+            saveEdit={handleSave}
+            discardEdit={() => {
+              setEvaluations([...initialEvaluations]);
+              setIsEditing(false);
+            }}
+            setIsEditing={setIsEditing}
+            disable={isSaving}
+          />
+        )}
+        {isTeacher && !canEditEvaluations && (
+          <em>
+            No puedes editar las notas porque no eres profesor de este ABP.
+          </em>
+        )}
+        {isTeacher && (
+          <CSVLink
+            data={downloadableData}
+            filename={`[ABP ${Number(abpInfo?.order) + 1}] ${
+              abpInfo?.course.name
+            } - ${new Date().toISOString().substring(0, 10)}.csv`}
+            className={styles.downloadAnchor}
+          >
+            Descargar
+          </CSVLink>
+        )}
+      </div>
     </div>
   );
 };

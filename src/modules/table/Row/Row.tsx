@@ -20,7 +20,7 @@ const numberInputProps = {
   classNames: { input: rowStyles.numberInput },
 } as const;
 
-const getAverageGrade = (evaluation: AbpEvaluationExtended) => {
+export const getAverageGrade = (evaluation: AbpEvaluationExtended) => {
   const asistencia = evaluation.asistencia;
   const interes = evaluation.interes;
   const informacion = evaluation.informacion;
